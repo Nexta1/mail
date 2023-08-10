@@ -6,7 +6,7 @@ server:
 
 spring:
   application:
-    name: product
+    name: coupon
   datasource:
     username: root
     password: 123456
@@ -63,3 +63,9 @@ mybatis-plus:
 #    web:
 #      exposure:
 #        include: '*'
+
+coupon:
+  name:
+    zhx
+  age:
+    19

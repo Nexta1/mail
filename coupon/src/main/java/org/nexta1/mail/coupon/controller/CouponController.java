@@ -5,11 +5,14 @@ import org.nexta1.common.utils.R;
 import org.nexta1.mail.coupon.entity.CouponEntity;
 import org.nexta1.mail.coupon.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -21,15 +24,26 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("coupon/coupon")
+@RefreshScope
 public class CouponController {
     @Autowired
     private CouponService couponService;
+
+    @Value("${coupon.name}")
+    private String name;
+    @Value("${coupon.age}")
+    private Integer age;
 
     @RequestMapping("/member/list")
     public R memberC() {
         CouponEntity couponEntity = new CouponEntity();
         couponEntity.setCouponName("123");
         return R.ok().put("cou", Collections.singletonList(couponEntity));
+    }
+
+    @RequestMapping("/value")
+    public R value() {
+        return Objects.requireNonNull(R.ok().put("name", name)).put("age", age);
     }
 
     /**

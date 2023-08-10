@@ -1,11 +1,10 @@
-package org.nexta1.procuct;
+package org.nexta1.gateway;
 
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProcuctApplicationTests {
+class GatewayApplicationTests {
 
     @Test
     void contextLoads() {

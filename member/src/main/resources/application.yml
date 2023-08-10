@@ -6,7 +6,7 @@ server:
 
 spring:
   application:
-    name: product
+    name: member
   datasource:
     username: root
     password: 123456
