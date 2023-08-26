@@ -1,17 +1,17 @@
 <template>
   <el-dialog
-          :title="!dataForm.id ? '新增' : '修改'"
-          :close-on-click-modal="false"
-          :visible.sync="visible">
+      :title="!dataForm.id ? '新增' : '修改'"
+      :close-on-click-modal="false"
+      :visible.sync="visible">
     <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()"
              label-width="80px">
-      #foreach($column in $columns)
-        #if($column.columnName != $pk.columnName)
-          <el-form-item label="${column.comments}" prop="${column.attrname}">
-            <el-input v-model="dataForm.${column.attrname}" placeholder="${column.comments}"></el-input>
-          </el-form-item>
+        #foreach($column in $columns)
+            #if($column.columnName != $pk.columnName)
+              <el-form-item label="${column.comments}" prop="${column.attrname}">
+                <el-input v-model="dataForm.${column.attrname}" placeholder="${column.comments}"></el-input>
+              </el-form-item>
+            #end
         #end
-      #end
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="visible = false">取消</el-button>
@@ -26,24 +26,24 @@
       return {
         visible: false,
         dataForm: {
-          #foreach($column in $columns)
-            #if($column.columnName == $pk.columnName)
-                ${column.attrname}: 0,
-            #else
-                ${column.attrname}: ''#if($velocityCount != $columns.size()),#end
+            #foreach($column in $columns)
+                #if($column.columnName == $pk.columnName)
+                        ${column.attrname}: 0,
+                #else
+                        ${column.attrname}: ''#if($velocityCount != $columns.size()),#end
 
+                #end
             #end
-          #end
         },
         dataRule: {
-          #foreach($column in $columns)
-            #if($column.columnName != $pk.columnName)
-                ${column.attrname}: [
-                {required: true, message: '${column.comments}不能为空', trigger: 'blur'}
-              ]#if($velocityCount != $columns.size()),#end
+            #foreach($column in $columns)
+                #if($column.columnName != $pk.columnName)
+                        ${column.attrname}: [
+                    {required: true, message: '${column.comments}不能为空', trigger: 'blur'}
+                  ]#if($velocityCount != $columns.size()),#end
 
+                #end
             #end
-          #end
         }
       }
     },
@@ -60,7 +60,7 @@
             [[this.$http.adornUrl]]
           #
             (`/${moduleName}/${pathName}/info/#[[$]]#{this.dataForm.${pk.attrname}}`),
-                    method
+                method
           :
             'get',
           #
@@ -104,7 +104,7 @@
             [[this.$http.adornUrl]]
           #
             (`/${moduleName}/${pathName}/${!this.dataForm.${pk.attrname} ? 'save' : 'update'}`),
-                    method
+                method
           :
             'post',
           #
@@ -113,25 +113,25 @@
             this.$http.adornData({
           ]]#
             #foreach($column in $columns)
-              #if($column.columnName == $pk.columnName)
-                '${column.attrname}'
-              :
-                this.dataForm.$
-                {
-                  column.attrname
-                }
-              ||
-                      undefined,
-              #else
-                      '${column.attrname}'
-              :
-                this.dataForm.$
-                {
-                  column.attrname
-                }
-                #if($velocityCount != $columns.size()), #end
+            #if($column.columnName == $pk.columnName)
+            '${column.attrname}'
+          :
+            this.dataForm.$
+            {
+              column.attrname
+            }
+          ||
+            undefined,
+                #else
+            '${column.attrname}'
+          :
+            this.dataForm.$
+            {
+              column.attrname
+            }
+            #if($velocityCount != $columns.size()), #end
 
-              #end
+            #end
             #end
           })
           }).
@@ -141,13 +141,13 @@
                 [[this.$message({]]
               #
                 message: '操作成功',
-                        type
+                    type
               :
                 'success',
-                        duration
+                    duration
               :
                 1500,
-                        onClose
+                    onClose
               :
                 () => {
                   this.visible = false

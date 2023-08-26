@@ -6,8 +6,9 @@
  * 版权所有，侵权必究！
  */
 
-package org.nexta1.common.exception;
+package org.nexta1.mail.product.exception;
 
+import org.nexta1.common.exception.RRException;
 import org.nexta1.common.utils.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
  */
 @RestControllerAdvice
 public class RRExceptionHandler {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * 处理自定义异常

@@ -12,6 +12,12 @@ server:
 
 spring:
   # 环境 dev|test|prod
+  application:
+    name: renren-fast
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
   profiles:
     active: dev
   # jackson时间格式化
