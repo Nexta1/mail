@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: product
+
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
+#        group: new
+#        #        dev的md5
+#        namespace: 43d9e62b-8189-443f-820f-2faa799f542f
+#        #        配置集id+分组
+#        ext-config[0]:
+#          data-id: datasource.yml
+#          refresh: true
+#          group: dev
+
